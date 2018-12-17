@@ -26,6 +26,13 @@ import org.junit.Test;
 import com.ibm.wsspi.classloading.ApiType;
 
 public class ApiTypeTest {
+	@Test
+	public void testFailingUnittest() {
+		String s1 = "orange";
+		String s2 = "apple";
+		assertEquals("Test fails on purpose!", s1, s2);
+	}
+	
     @Test
     public void testApiTypeParsing() {
         assertEquals(API, ApiType.fromString(null));
