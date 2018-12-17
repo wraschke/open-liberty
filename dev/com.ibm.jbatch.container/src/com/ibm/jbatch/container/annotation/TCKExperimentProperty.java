@@ -30,6 +30,7 @@ import java.lang.annotation.RetentionPolicy;
  * @author skurz
  *
  */
+deliberate compilation error!
 @Retention(RetentionPolicy.SOURCE)
 public @interface TCKExperimentProperty {
 	  public abstract java.lang.String value() default "";
