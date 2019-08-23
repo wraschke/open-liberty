@@ -268,6 +268,10 @@ public class FeatureList {
                 Set<String> enabledFeatureNames = new TreeSet<String>();
                 searchContent(fd, cbr, enabledFeatureNames, bundles, apiJars, spiJars);
 
+				for (File f : bundles) {
+					writer.writeTextElement("debug_bundle", f.getAbsolutePath());
+				}
+
                 for (String enabledFeatureName : enabledFeatureNames) {
                     writer.writeTextElement("enables", enabledFeatureName);
                 }

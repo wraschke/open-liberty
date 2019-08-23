@@ -521,6 +521,7 @@ public class SubsystemFeatureDefinitionImpl implements ProvisioningFeatureDefini
             featureBundles.compareAndSet(null, bundles);
         }
 
+		System.out.println("getBundles(): " + bundles);
         return bundles;
     }
 }
