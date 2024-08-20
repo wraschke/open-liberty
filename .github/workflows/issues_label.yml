@@ -17,9 +17,9 @@ jobs:
     steps:
       - name: Query if user is OpenLiberty member
         run: |
-          echo "Issue created by user ${{ github.event.issue.user.login }}"
+          echo "Is issue creator ${{ github.event.issue.user.login }} a member of OpenLiberty?"
           # gh pr create -B vNext -H "${{ inputs.NEW_VERSION }}-release" -r leochr --title "Updates for the release of ${{ inputs.NEW_VERSION }}" --body "Created by Github Actions"
-          # curl -H "Authorization: Bearer ${GITHUB_TOKEN} https://api.github.com/orgs/OpenLiberty/memberships
+          curl -H "Authorization: Bearer ${GITHUB_TOKEN}" https://api.github.com/orgs/OpenLiberty/memberships/${{ github.event.issue.user.login }}
         env:
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: add label
