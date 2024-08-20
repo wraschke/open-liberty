@@ -14,8 +14,7 @@ on:
 jobs:
   add_label:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write-all
+    permissions: write-all
 
     steps:
       - name: Query if user is OpenLiberty member
