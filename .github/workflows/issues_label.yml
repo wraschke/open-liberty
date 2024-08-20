@@ -23,7 +23,7 @@ jobs:
           echo "Is issue creator ${CREATOR} a member of OpenLiberty?"
           URL=https://api.github.com/orgs/OpenLiberty/members/${CREATOR}
           echo "Calling ${URL}"
-          curl -H "Authorization: Bearer ${GITHUB_TOKEN}" ${URL}
+          curl -i -H "Authorization: Bearer ${GITHUB_TOKEN}" ${URL}
         env:
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: add label
