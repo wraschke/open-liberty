@@ -23,6 +23,9 @@ jobs:
   copyright_header_check:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -41,6 +44,8 @@ jobs:
         uses: octokit/request-action@v2.x
         with:
           route: GET "${{ github.event.pull_request.url }}/files"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
