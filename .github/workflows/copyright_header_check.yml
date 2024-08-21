@@ -36,7 +36,11 @@ jobs:
           echo "PR diff URL = ${{ github.event.pull_request.diff_url }}"
           echo "PR statuses URL = ${{ github.event.pull_request.statuses_url }}"
           echo "PR URL = ${{ github.event.pull_request.url }}"
-          
+
+      - name: Get pull request file changes
+        uses: octokit/request-action@v2.x
+        with:
+          route: GET "${{ github.event.pull_request.url }}/files"
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
