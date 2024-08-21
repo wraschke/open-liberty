@@ -25,6 +25,9 @@ jobs:
           organization: OpenLiberty
           username: ${{ github.event.issue.user.login }}
           token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Print result
+        run: |
+          echo "Result from previous = {{ steps.is_organization_member.outputs.result }}"
       #- name: Query if user is OpenLiberty member
       #  run: |
       #    CREATOR=${{ github.event.issue.user.login }}
