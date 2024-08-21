@@ -22,7 +22,8 @@ jobs:
           CREATOR=${{ github.event.issue.user.login }}
           echo "Is issue creator ${CREATOR} a member of OpenLiberty?"
           #URL=https://api.github.com/orgs/OpenLiberty/members/${CREATOR}
-          URL=https://api.github.com/users/${CREATOR}/orgs
+          #URL=https://api.github.com/users/${CREATOR}/orgs
+          URL=https://api.github.com/orgs/OpenLiberty/members
           echo "Calling ${URL}"
           curl -i -H "Authorization: Bearer ${GITHUB_TOKEN}" ${URL}
         env:
