@@ -43,7 +43,9 @@ jobs:
       - name: Get pull request file changes
         uses: octokit/request-action@v2.x
         with:
-          route: GET "${{ github.event.pull_request.url }}/files"
+          route: GET /repos/{owner}/{repo}/pulls/${{ github.event.pull_request.number}}/files
+          owner: wraschke
+          repo: open-liberty
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
