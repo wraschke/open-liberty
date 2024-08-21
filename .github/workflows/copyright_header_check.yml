@@ -24,10 +24,10 @@ jobs:
     steps:
       - name: Debug info
         run: |
-          echo Push event after ${{ github.event.after }}
-          echo Ref ${{ github.event.ref }}
-          echo Repository ${{ github.event.repository }}
-          echo Compare ${{ github.event.compare }}
+          echo Push event after = ${{ github.event.after }}
+          echo Ref = ${{ github.event.ref }}
+          echo Repository = ${{ github.event.repository.name }}
+          echo Compare = ${{ github.event.compare }}
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
