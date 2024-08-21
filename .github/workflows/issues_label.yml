@@ -17,17 +17,25 @@ jobs:
     permissions: write-all
 
     steps:
-      - name: Query if user is OpenLiberty member
-        run: |
-          CREATOR=${{ github.event.issue.user.login }}
-          echo "Is issue creator ${CREATOR} a member of OpenLiberty?"
-          #URL=https://api.github.com/orgs/OpenLiberty/members/${CREATOR}
-          #URL=https://api.github.com/users/${CREATOR}/orgs
-          URL=https://api.github.com/orgs/OpenLiberty/members
-          echo "Calling ${URL}"
-          curl -i -H "Authorization: Bearer ${GITHUB_TOKEN}" ${URL}
-        env:
-           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check if OpenLiberty member
+        id: is_organization_member
+        if: github.event.action == 'opened'
+        uses: JamesSingleton/is-organization-member@1.0.0
+        with:
+          organization: OpenLiberty
+          username: ${{ github.event.issue.user.login }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+      #- name: Query if user is OpenLiberty member
+      #  run: |
+      #    CREATOR=${{ github.event.issue.user.login }}
+      #    echo "Is issue creator ${CREATOR} a member of OpenLiberty?"
+      #    #URL=https://api.github.com/orgs/OpenLiberty/members/${CREATOR}
+      #    #URL=https://api.github.com/users/${CREATOR}/orgs
+      #    URL=https://api.github.com/orgs/OpenLiberty/members
+      #    echo "Calling ${URL}"
+      #    curl -i -H "Authorization: Bearer ${GITHUB_TOKEN}" ${URL}
+      #  env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: add label
         uses: actions-ecosystem/action-add-labels@v1
         with:
