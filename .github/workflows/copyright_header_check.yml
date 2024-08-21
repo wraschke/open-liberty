@@ -8,7 +8,7 @@ on:
   push:
     branches:
       - 'test-branch'
-      - 'integration'
+      # - 'integration'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -23,19 +23,18 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      #- name: Check out the user's fork
-      #  uses: actions/checkout@v4
-        # with:
-          # ref: ${{ github.event.push.ref }}
-          # repository: open-liberty
+      - name: Check out the user's fork
+        uses: actions/checkout@v4
+        with:
+           ref: ${{ github.event.ref }}
+           repository: ${{ github.event.repository }}
 
       - name: Debug info
         run: |
-          echo Push event info ${{ github.event }}
+          #echo Push event info ${{ github.event }}
           echo Push event after ${{ github.event.after }}
-          echo Action ref ${{ github.action_ref }}
-          echo Action repository ${{ github.action_repository }}
           echo Ref ${{ github.event.ref }}
+          echo Repository ${{ github.event.repository }}
           echo Compare ${{ github.event.compare }}
 
       # Runs a set of commands using the runners shell
