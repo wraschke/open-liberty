@@ -31,14 +31,12 @@ jobs:
 
       - name: Debug info
         run: |
-          #echo "GITHUB_WORKSPACE = ${GITHUB_WORKSPACE}"
-          echo What is this event? ${{ github.event_name }}
           echo Push event info: ${{ github.event.push }}
-          echo Push event after: ${{ github.event.push.after }}
-          echo Action ref: ${{ github.action_ref }}
-          echo Action repository: ${{ github.action_repository }}
-          echo Ref: ${{ github.event.push.ref }}
-          echo Compare: ${{ github.event.push.compare }}
+          #echo Push event after: ${{ github.event.push.after }}
+          #echo Action ref: ${{ github.action_ref }}
+          #echo Action repository: ${{ github.action_repository }}
+          #echo Ref: ${{ github.event.push.ref }}
+          #echo Compare: ${{ github.event.push.compare }}
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
