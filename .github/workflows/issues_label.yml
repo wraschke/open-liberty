@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: Check if OpenLiberty member
         id: is_organization_member
-        if: github.event.action == 'opened'
+        #if: github.event.action == 'opened'
         uses: JamesSingleton/is-organization-member@1.0.0
         with:
           organization: OpenLiberty
