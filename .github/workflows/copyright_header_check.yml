@@ -31,16 +31,7 @@ jobs:
 
       - name: Debug info
         run: |
-          echo Push event info: ${{ github.event.push }}
-          #echo Push event after: ${{ github.event.push.after }}
-          #echo Action ref: ${{ github.action_ref }}
-          #echo Action repository: ${{ github.action_repository }}
-          #echo Ref: ${{ github.event.push.ref }}
-          #echo Compare: ${{ github.event.push.compare }}
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+          echo "Push event info: ${{ github.event.push }}"
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
