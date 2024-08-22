@@ -48,5 +48,5 @@ jobs:
 
       - name: Pull request file changes output
         run: |
-          "echo PR file changes data = '${{ steps.get_pr_file_changes.outputs.data }}'"
           "echo headers = '${{ steps.get_pr_file_changes.outputs.headers }}'"
+          "echo PR file changes data = '${{ steps.get_pr_file_changes.outputs.data }}'"
