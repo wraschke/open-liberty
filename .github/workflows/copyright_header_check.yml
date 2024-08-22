@@ -44,12 +44,9 @@ jobs:
         uses: octokit/request-action@v2.x
         id: get_pr_file_changes
         with:
-          #route: GET /repos/{owner}/{repo}/pulls/${{ github.event.pull_request.number}}/files
-          #owner: ${{ github.event.repository.owner.login }}
-          #repo: ${{ github.event.repository.name }}
-          route: GET /repos/{owner}/{repo}/pulls/12562/files
-          owner: OpenLiberty
-          repo: open-liberty
+          route: GET /repos/{owner}/{repo}/pulls/${{ github.event.pull_request.number}}/files
+          owner: ${{ github.event.repository.owner.login }}
+          repo: ${{ github.event.repository.name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
