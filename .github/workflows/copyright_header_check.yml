@@ -54,8 +54,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Pull request file changes output
-        run: |
-          #"echo PR file changes data = '${{ steps.get_pr_file_changes.outputs.data }}'"
+        run:
           "echo headers = '${{ steps.get_pr_file_changes.outputs.headers }}'"
 
       # Runs a set of commands using the runners shell
