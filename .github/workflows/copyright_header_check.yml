@@ -9,6 +9,8 @@ on:
     types:
       - opened
       - synchronize
+      - edited
+      # "edited" is temporary and in place for testing only
   push:
     branches:
       - 'test-branch'
@@ -45,7 +47,7 @@ jobs:
         id: get_pr_file_changes
         with:
           route: GET /repos/{owner}/{repo}/pulls/${{ github.event.pull_request.number}}/files
-          owner: ${{ github.event.organization.login }}
+          owner: ${{ github.event.repository.owner.login }}
           repo: ${{ github.event.repository.name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
