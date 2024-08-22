@@ -45,12 +45,13 @@ jobs:
         id: get_pr_file_changes
         with:
           route: GET /repos/{owner}/{repo}/pulls/${{ github.event.pull_request.number}}/files
-          owner: wraschke
-          repo: open-liberty
+          owner: ${{ github.event.organization.login }}
+          repo: ${{ github.event.repository.name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - run: "echo PR file changes = '${{ steps.get_pr_file_changes.outputs.data }}'"
+      - name: Pull request file changes output
+        run: "echo PR file changes = '${{ steps.get_pr_file_changes.outputs.data }}'"
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
