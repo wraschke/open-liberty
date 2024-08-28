@@ -34,6 +34,7 @@ jobs:
           CREATOR=${{ github.event.issue.user.login }}
           echo "Is issue creator ${CREATOR} a member of OpenLiberty?"
           # TODO: This should work even if GITHUB_TOKEN is authentication for something NOT an OpenLiberty org member
+          # No, this doesn't work. Test further to confirm or deny.
           #URL=https://api.github.com/orgs/OpenLiberty/members/${CREATOR}
           #URL=https://api.github.com/users/${CREATOR}/orgs
           URL=https://api.github.com/orgs/OpenLiberty/memberships/${CREATOR}
