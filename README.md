@@ -7,6 +7,7 @@
 </p>
 <br />
 
+### This is not a change for delivery
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.openliberty/openliberty-runtime.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/io.openliberty/openliberty-runtime)
 [![Container Images](https://img.shields.io/badge/container-images-yellow)](https://openliberty.io/docs/latest/container-images.html)
