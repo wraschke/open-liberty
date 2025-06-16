@@ -15,8 +15,9 @@ jobs:
     name: A job to check status of issue creator
     steps:
     - name: Print the GitHub event
-      run: |
-        echo ${{ toJson(github.event.issue) }}
+      run: echo "$GITHUB_CONTEXT"
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }
 
     - name: Check if user is not a member
       if: ${{ github.event.issue.author_association == 'NONE' }}
