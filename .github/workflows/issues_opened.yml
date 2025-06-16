@@ -14,8 +14,12 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to check status of issue creator
     steps:
-    - name: Check user's repository status
+    - name: Check if user is not a member
       if: ${{ github.event.issue.author_association == 'NONE' }}
       run: |
         echo "Issue was created by a non-member."
-        exit 0
+
+    - name: Check if user is a contributor or member
+      if: ${{ github.event.issue.author_association == 'CONTRIBUTOR' || github.event.issue.author_association == 'MEMBER' }}
+      run: |
+        echo "Issue was created by a member."
