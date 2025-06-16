@@ -28,3 +28,8 @@ jobs:
       if: ${{ github.event.issue.author_association == 'CONTRIBUTOR' || github.event.issue.author_association == 'MEMBER' }}
       run: |
         echo "Issue was created by a member."
+
+    - name: Check if user is an owner
+      if: ${{ github.event.issue.author_association == 'OWNER' }}
+      run: |
+        echo "Issue was created by an owner."
