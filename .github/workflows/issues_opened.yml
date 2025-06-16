@@ -7,7 +7,6 @@ on:
   issues:
      types:
        - opened
-       # "edited" for testing only
        - edited
 
 jobs:
@@ -16,7 +15,7 @@ jobs:
     name: A job to check status of issue creator
     steps:
     - name: Check user's repository status
-      if: ${{ github.event.issue.author_association != 'CONTRIBUTOR' && github.event.issue.author_association != 'MEMBER' }}
+      if: ${{ github.event.issue.author_association == 'NONE' }}
       run: |
-        echo "Event not triggered by a collaborator."
-        exit 1
+        echo "Issue was created by a non-member."
+        exit 0
