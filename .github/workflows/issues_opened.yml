@@ -14,6 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     name: A job to check status of issue creator
     steps:
+    - name: Print the GitHub event
+      run: |
+        echo ${{ github.event.issue }}
+
     - name: Check if user is not a member
       if: ${{ github.event.issue.author_association == 'NONE' }}
       run: |
