@@ -16,7 +16,7 @@ jobs:
     name: A job to check status of issue creator
     steps:
     - name: Check user's repository status
-      if: ${{ github.event.issue.author_association != 'CONTRIBUTOR' && github.event.pull_request.author_association != 'MEMBER' }}
+      if: ${{ github.event.issue.author_association != 'CONTRIBUTOR' && github.event.issue.author_association != 'MEMBER' }}
       run: |
         echo "Event not triggered by a collaborator."
         exit 1
