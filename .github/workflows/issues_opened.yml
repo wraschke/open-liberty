@@ -17,7 +17,7 @@ jobs:
     - name: Print the GitHub event
       run: echo "$GITHUB_CONTEXT"
       env:
-        GITHUB_CONTEXT: ${{ toJson(github) }
+        GITHUB_CONTEXT: ${{ toJson(github) }}
 
     - name: Check if user is not a member
       if: ${{ github.event.issue.author_association == 'NONE' }}
