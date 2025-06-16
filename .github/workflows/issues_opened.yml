@@ -41,7 +41,7 @@ jobs:
          # Slack channel id, channel name, or user id to post message.
          # See also: https://api.slack.com/methods/chat.postMessage#channels
          # You can pass in multiple channels to post to by providing a comma-delimited list of channel IDs.
-         channel-id: 'D2XQW2UCV'
+         channel-id: 'C42GNNU5D'
          # For posting a simple plain text message
          slack-message: "This is a test Slack message sent by a GitHub Action for issue ${{ github.event.issue.html_url }}"
       env:
