@@ -1,0 +1,22 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Issues Opened Workflow
+
+# Run workflow when a new issue is opened
+on:
+  issues:
+     types:
+       - opened
+       # "edited" for testing only
+       - edited
+
+jobs:
+  check_issue_creator_status:
+    runs-on: ubuntu-latest
+    name: A job to check status of issue creator
+    steps:
+    - name: Check user's repository status
+      if: ${{ github.event.issue.author_association != 'CONTRIBUTOR' && github.event.pull_request.author_association != 'MEMBER' }}
+      run: |
+        echo "Event not triggered by a collaborator."
+        exit 1
