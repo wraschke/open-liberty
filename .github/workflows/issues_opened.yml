@@ -16,7 +16,7 @@ jobs:
     steps:
     - name: Print the GitHub event
       run: |
-        echo ${{ github.event.issue }}
+        echo ${{ toJson(github.event.issue) }}
 
     - name: Check if user is not a member
       if: ${{ github.event.issue.author_association == 'NONE' }}
