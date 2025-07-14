@@ -1,0 +1,48 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Issues Opened Workflow
+
+# Run workflow when a new issue is opened
+on:
+  issues:
+     types:
+       - opened
+       - edited
+
+jobs:
+  check_issue_creator_status:
+    runs-on: ubuntu-latest
+    name: A job to check status of issue creator
+    steps:
+    #- name: Print the GitHub event
+    #  run: echo "$GITHUB_CONTEXT"
+    #  env:
+    #    GITHUB_CONTEXT: ${{ toJson(github) }}
+
+    - name: Check if user is not a member
+      if: ${{ github.event.issue.author_association == 'NONE' }}
+      run: |
+        echo "Issue was created by a non-member."
+
+    - name: Check if user is a contributor or member
+      if: ${{ github.event.issue.author_association == 'CONTRIBUTOR' || github.event.issue.author_association == 'MEMBER' }}
+      run: |
+        echo "Issue was created by a member."
+
+    - name: Check if user is an owner
+      if: ${{ github.event.issue.author_association == 'OWNER' }}
+      run: |
+        echo "Issue was created by an owner."
+
+    - name: Post to #slack-test
+      id: slack
+      uses: slackapi/slack-github-action@v1.23.0
+      with:
+         # Slack channel id, channel name, or user id to post message.
+         # See also: https://api.slack.com/methods/chat.postMessage#channels
+         # You can pass in multiple channels to post to by providing a comma-delimited list of channel IDs.
+         channel-id: 'C42GNNU5D'
+         # For posting a simple plain text message
+         slack-message: "This is a test Slack message sent by a GitHub Action for issue ${{ github.event.issue.html_url }}"
+      env:
+         SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }} 

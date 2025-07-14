@@ -1,0 +1,52 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Copyright Header Status Check
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "integration" branch
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - edited
+      # "edited" is temporary and in place for testing only
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "copyright_header_check"
+  copyright_header_check:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Debug info
+        run: |
+          echo "Push event after = ${{ github.event.after }}"
+          echo "Ref = ${{ github.event.ref }}"
+          echo "Repository = ${{ github.event.repository.name }}"
+          echo "Head ref = ${{ github.event.pull_request.head.ref }}"
+          echo "Base ref = ${{ github.event.pull_request.base.ref }}"
+          echo "PR diff URL = ${{ github.event.pull_request.diff_url }}"
+          echo "PR statuses URL = ${{ github.event.pull_request.statuses_url }}"
+          echo "PR URL = ${{ github.event.pull_request.url }}"
+
+      # Need to get all the files changed under PR. Unclear if this action allows pagination.
+      - name: Get pull request files raw JSON
+        uses: octokit/request-action@v2.x
+        id: get_pr_file_changes
+        with:
+          route: GET /repos/{owner}/{repo}/pulls/${{ github.event.pull_request.number }}/files
+          owner: ${{ github.event.repository.owner.login }}
+          repo: ${{ github.event.repository.name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Pull request file changes output
+        run: |
+          "echo headers = '${{ steps.get_pr_file_changes.outputs.headers }}'"
+          "echo PR file changes data = '${{ steps.get_pr_file_changes.outputs.data }}'"

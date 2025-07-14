@@ -1,0 +1,48 @@
+# This workflow will triage issues and apply a label based on the creator.
+#
+# To use this workflow, you will need to set up a .github/labeler.yml
+# file with configuration.  For more information, see:
+# https://github.com/actions/labeler
+
+name: Issues Labeler
+on:
+  issues:
+     types:
+       - opened
+       - edited
+
+jobs:
+  add_label:
+    runs-on: ubuntu-latest
+    permissions: write-all
+
+    steps:
+      #- name: Check if OpenLiberty member
+      #  id: is_organization_member
+      #  #if: github.event.action == 'opened'
+      #  uses: JamesSingleton/is-organization-member@1.0.0
+      #  with:
+      #    organization: OpenLiberty
+          #username: ${{ github.event.issue.user.login }}
+      #    username: LibbyBot
+      #    token: ${{ secrets.GITHUB_TOKEN }}
+      #- name: Print result
+      #  run: |
+      #    echo "Result from previous = ${{ steps.is_organization_member.outputs.result }}"
+      - name: Query if user is OpenLiberty member
+        run: |
+          CREATOR=${{ github.event.issue.user.login }}
+          echo "Is issue creator ${CREATOR} a member of OpenLiberty?"
+          # TODO: This should work even if GITHUB_TOKEN is authentication for something NOT an OpenLiberty org member
+          # No, this doesn't work. Test further to confirm or deny.
+          #URL=https://api.github.com/orgs/OpenLiberty/members/${CREATOR}
+          #URL=https://api.github.com/users/${CREATOR}/orgs
+          URL=https://api.github.com/orgs/OpenLiberty/memberships/${CREATOR}
+          echo "Calling ${URL}"
+          curl -i -H "Authorization: Bearer ${GITHUB_TOKEN}" ${URL}
+        env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: add label
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          labels: "testing"
