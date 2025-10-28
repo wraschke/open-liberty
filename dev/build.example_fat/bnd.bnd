@@ -10,7 +10,8 @@
 # Contributors:
 #     IBM Corporation - initial API and implementation
 #*******************************************************************************
--include= ~../cnf/resources/bnd/bundle.props
+# This is a simulated change to test that my commits are now signed.
+-include= ~../cnf/resources/bnd/bundle.propss
 bVersion=1.0
 
 src: \
