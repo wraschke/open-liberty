@@ -10,7 +10,7 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
-
+// Test comment. I will not merge this change.
 dependencies {
   //if there is a existing project, reference it directly
   //requiredLibs project(':io.openliberty.org.apache.commons.logging')
